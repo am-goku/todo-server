@@ -1,5 +1,6 @@
 import { response } from "express";
 import {
+  clearTasksHelper,
   deleteEventHelper,
   deleteTaskHelper,
   getEventsHelper,
@@ -92,3 +93,14 @@ export const getEvents = (req, res) => {
     res.status(error.status || 500).send(error);
   }
 };
+
+
+export const clearTasks = (req, res) => {
+  try {
+    clearTasksHelper(req.body.eventId).then((response) => {
+      res.status(200).send(response)
+    })
+  } catch (error) {
+    res.status(error.status || 500).send(error);
+  }
+}

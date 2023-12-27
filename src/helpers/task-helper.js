@@ -98,3 +98,15 @@ export const getEventsHelper = (userId) => {
     }
   });
 };
+
+
+
+export const clearTasksHelper = (eventId) => {
+  return new Promise((resolve, reject) => {
+      Tasks.deleteMany({eventId: eventId}).then((res) => {
+        resolve(res)
+      }).catch((err) => {
+        reject(err)
+      })
+  })
+}

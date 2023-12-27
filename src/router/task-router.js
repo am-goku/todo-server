@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   addTask,
+  clearTasks,
   deleteEvent,
   deleteTask,
   getEvents,
@@ -34,5 +35,7 @@ router.get("/get-events", protect, getEvents);
 //@desc     Get Task
 //@route    GET /api/task/get-task
 router.get("/get-tasks", protect, gettasks);
+
+router.delete("/clear-tasks", protect, clearTasks)
 
 export default router;
