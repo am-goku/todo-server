@@ -5,7 +5,7 @@ import token from "../services/jwt.js";
 
 const protect = (req, res, next) => {
   try {
-    const accessToken = req.headers.authorization;
+    const accessToken = req.headers.Authorization;
     if (accessToken) {
       //checking token
       token

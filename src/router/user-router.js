@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, loginUser } from "../controllers/user-controller.js";
+import { createUser, getUser, loginUser } from "../controllers/user-controller.js";
 
 const router = Router();
 
@@ -12,6 +12,11 @@ router.post('/create-account', createUser);
 //@desc     Login user
 //@route    /api/user/login-user
 router.post("/login-user", loginUser);
+
+
+//@desc     Fetch user
+//@route    /api/user/get-user
+router.get("/get-user", getUser);
 
 
 

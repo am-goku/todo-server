@@ -44,3 +44,14 @@ export const loginUser = (req, res) => {
     res.status(error.status || 500).send(error);
   }
 };
+
+
+//@desc     Fetch user
+//@route    /api/user/get-user
+export const getUser = (req, res) => {
+  try {
+    res.status(200).send(req.user)
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}

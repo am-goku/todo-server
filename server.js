@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors"
+import logger from "morgan"
 
 //dotenv config
 import dotenv from "dotenv"
@@ -25,6 +26,8 @@ app.use(cors({
 
 //Database connection
 mongo.connect()
+
+app.use(logger("dev")); //logger
 
 
 //Router setup
