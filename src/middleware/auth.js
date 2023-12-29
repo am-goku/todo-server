@@ -5,14 +5,14 @@ import token from "../services/jwt.js";
 
 const protect = (req, res, next) => {
   try {
-    const accessToken = req.headers.Authorization;
+    const accessToken = req.headers.authorization;
     if (accessToken) {
       //checking token
       token
         .verifyAccess(accessToken)
         .then((decoded) => {
           //verifying token
-          Users.findOne({ userId: decoded.userId })
+          Users.findOne({ _id: decoded.userId })
             .then((user) => {
               //getting user
               req.user = user; //setting user as req user
@@ -46,10 +46,10 @@ const protect = (req, res, next) => {
           status: 401,
           error_code: "NO_TOKEN",
           message: "Unauthorised user.",
-          error
         }); //error for for token
     }
   } catch (error) {
+    console.log(error);
     res
       .status(500)
       .json({

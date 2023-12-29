@@ -9,6 +9,7 @@ export const refreshAccess = (req, res) => {
         res.status(200).send(response);
       })
       .catch((error) => {
+        console.log(error);
         res.status(error.status || 500).send(error);
       });
   } catch (error) {

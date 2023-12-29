@@ -9,7 +9,7 @@ export const refreshHelper = (refreshToken) => {
       token
         .verifyAccess(refreshToken)
         .then(async (decoded) => {
-          const user = await Users.findOne({ _id: decoded?.useId });
+          const user = await Users.findOne({ _id: decoded?.userId });
 
           if (user) {
             const accessToken = await token.getRefreshToken(user?._id);

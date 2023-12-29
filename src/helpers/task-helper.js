@@ -5,6 +5,7 @@ import { Tasks } from "../models/taskSchema.js";
 //@route    POST /api/task/create-event
 export const newEventHelper = ({ eventName, userId }) => {
   return new Promise((resolve, reject) => {
+    console.log(eventName);
     const newEvent = new Event({
       eventName: eventName,
       userId: userId,
@@ -13,9 +14,11 @@ export const newEventHelper = ({ eventName, userId }) => {
     newEvent
       .save({ new: true })
       .then((event) => {
+        console.log(event);
         resolve(event);
       })
       .catch((err) => {
+        console.log(err);
         reject(err);
       });
   });
@@ -75,8 +78,10 @@ export const deleteTaskHelper = (taskId) => {
 //@route    GET /api/task/get-task
 export const getTasksHelper = (eventId) => {
   return new Promise((resolve, reject) => {
+    console.log(eventId);
     try {
-      Tasks.find({ eventId: eventId }).then((res) => {
+      Tasks.find({ eventId: eventId }).sort({createdAt: -1}).then((res) => {
+        console.log(res);
         resolve(res);
       });
     } catch (error) {
@@ -92,7 +97,9 @@ export const getEventsHelper = (userId) => {
     try {
       Event.find({ userId: userId }).then((res) => {
         resolve(res);
-      });
+      }).catch((error) => {
+        reject(error);
+      })
     } catch (error) {
       reject(error);
     }
@@ -108,5 +115,17 @@ export const clearTasksHelper = (eventId) => {
       }).catch((err) => {
         reject(err)
       })
+  })
+}
+
+
+
+export const getEventHelper = (eventId) => {
+  return new Promise((resolve, reject) => {
+    Event.findOne({_id: eventId}).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(err)
+    })
   })
 }
